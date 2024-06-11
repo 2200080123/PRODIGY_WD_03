@@ -1,0 +1,287 @@
+/* General Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121310;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #42a5f5, 0 0 20px #42a5f5, 0 0 30px #42a5f5, 0 0 40px #42a5f5;
+    transition: box-shadow 0.3s;
+}
+
+.container:hover {
+    box-shadow: 0 0 20px #42a5f5, 0 0 40px #42a5f5, 0 0 60px #42a5f5, 0 0 80px #42a5f5;
+}
+
+/* Separate styles for home page containers */
+#choose-side-container, #choose-mode-container {
+    width: 300px;  /* Original size */
+    padding: 30px;
+}
+
+#status {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 10px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background: #ffffff;
+    border: 4px solid #b0bec5;
+    border-radius: 10px;
+    font-size: 2.5em;
+    cursor: pointer;
+    font-family: 'Caveat', cursive;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cell:hover {
+    background-color: #e0f2f1;
+}
+
+.cell:active {
+    transform: scale(0.95);
+}
+
+/* Add this style for the winning cells */
+.cell.winner {
+    background-color: #70b0f1; /* Keep this line for the cell color */
+    border-color: #70b0f1; /* Keep this line for the cell border color */
+    color: #0c0c0c; /* Add this line for the text color */
+}
+
+
+.strike {
+    position: absolute;
+    background-color: red;
+    height: 5px;
+}
+
+.strike.horizontal-1 {
+    width: 370px;
+    top: 40px;
+    left: 0;
+}
+
+.strike.horizontal-2 {
+    width: 370px;
+    top: 160px;
+    left: 0;
+}
+
+.strike.horizontal-3 {
+    width: 370px;
+    top: 280px;
+    left: 0;
+}
+
+.strike.vertical-1 {
+    height: 370px;
+    width: 5px;
+    top: 0;
+    left: 40px;
+}
+
+.strike.vertical-2 {
+    height: 370px;
+    width: 5px;
+    top: 0;
+    left: 160px;
+}
+
+.strike.vertical-3 {
+    height: 370px;
+    width: 5px;
+    top: 0;
+    left: 280px;
+}
+
+.strike.diagonal-1 {
+    width: 370px;
+    transform: rotate(45deg);
+    top: 0;
+    left: 0;
+}
+
+.strike.diagonal-2 {
+    width: 370px;
+    transform: rotate(-45deg);
+    top: 0;
+    right: 0;
+}
+
+#reset {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #64b5f6;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#reset:hover {
+    background-color: #42a5f5;
+}
+
+#reset:active {
+    transform: scale(0.95);
+}
+
+/* Modal Box Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fafafa;
+    margin: 20% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+    animation: modal-appear 0.5s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes modal-appear {
+    from {transform: translateY(-50px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-status {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#scoreboard > div {
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* Additional animations for modal content */
+#scoreboard, #play-again, #home { /* Added #home */
+    animation: modal-content-appear 0.5s;
+}
+
+@keyframes modal-content-appear {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#play-again, #home { /* Added #home */
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #64b5f6;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#play-again:hover, #home:hover { /* Added #home */
+    background-color: #42a5f5;
+}
+
+#play-again:active, #home:active { /* Added #home */
+    transform: scale(0.95);
+}
+
+/* Logo */
+.logo {
+    font-family: 'Caveat', cursive;
+    font-size: 3em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.choose-side p {
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.choose-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #64b5f6;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.choose-btn:hover {
+    background-color: #42a5f5;
+}
+
+.choose-btn:active {
+    transform: scale(0.95);
+}
+#status {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ffffff; /* Add this line */
+}
+/* Add this style for the winning cells */
+/* Add this style for the winning cells */
